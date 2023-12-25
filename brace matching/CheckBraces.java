@@ -49,7 +49,7 @@ public class CheckBraces {
      * A source-code checker for missing opening and closing brackets that outputs
      * an error message if there are any such issues during checking. Utilizes
      * complicated boolean logic to ensure that all error possibilities are tested
-     * for.
+     * for. Method implemented by Saqlain Anjum.
      * 
      * @return The return message if use of brackets is valid within the
      *         given document.
