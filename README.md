@@ -1,4 +1,4 @@
 - Completed as a part of Trinity College's Data Structures & Algorithms Course. Exercise from ZyBooks.
 - check() method and all related private methods were implemented by Saqlain Anjum.
 - This project served as an algorithm design exercise involving stacks.
-- You must provide a java source file whose brackets are mismatched or incorrect for the program to work.
+- You must provide a java source file whose brackets are mismatched or incorrect for the tests to work.
