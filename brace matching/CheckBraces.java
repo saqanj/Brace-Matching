@@ -49,41 +49,59 @@ public class CheckBraces {
      * A source-code checker for missing opening and closing brackets that outputs
      * an error message if there are any such issues during checking. Utilizes
      * complicated boolean logic to ensure that all error possibilities are tested
-     * for. Method implemented by Saqlain Anjum.
+     * for.
      * 
      * @return The return message if use of brackets is valid within the
      *         given document.
      */
     public String check() {
-        Stack<Character> symbols = new ArrayStack<Character>();
+        Stack<Character> symbols = new ArrayStack<>();
         String returnMessage = "";
         boolean openingError = false;
+    
         for (int i = 0; i < context.length(); i++) {
-            Character characterInQuestion = context.charAt(i);
-            if (PUSHERS.contains(characterInQuestion.toString())) {
-                symbols.push(characterInQuestion);
-            } else if ((characterInQuestion == ']' && symbols.isEmpty() == true)
-                    || (characterInQuestion == ')' && symbols.isEmpty() == true)
-                    || (characterInQuestion == '}' && symbols.isEmpty() == true)) {
-                System.out.format(NO_OPENING_BRACE, i, characterInQuestion);
-                openingError = true;
-                break;
-            } else if (((characterInQuestion == ']') && (symbols.top() == '['))
-                    || ((characterInQuestion == ')') && (symbols.top() == '('))
-                    || ((characterInQuestion == '}') && (symbols.top() == '{'))) {
-                symbols.pop();
-            } else if (symbols.isEmpty() == false
-                    && ((characterInQuestion == ']' && (symbols.top() == '{' || symbols.top() == '('))
-                            || (characterInQuestion == ')' && (symbols.top() == '{' || symbols.top() == '['))
-                            || (characterInQuestion == '}' && (symbols.top() == '(' || symbols.top() == '[')))) {
-                System.out.format(UNEXPECTED_BRACE, i, characterInQuestion, symbols.top());
-                break;
+            char currentChar = context.charAt(i);
+    
+            if (isPusher(currentChar)) {
+                symbols.push(currentChar);
+            } else if (isClosingBracket(currentChar)) {
+                if (symbols.isEmpty() || !matchesTopBracket(symbols, currentChar)) {
+                    handleBracketError(i, currentChar, symbols);
+                    openingError = true;
+                    break;
+                } else {
+                    symbols.pop();
+                }
             }
         }
-        if (symbols.isEmpty() == true && openingError == false) {
+    
+        if (symbols.isEmpty() && !openingError) {
             returnMessage = ALL_MATCH;
         }
+    
         return returnMessage;
     }
+    
+    private boolean isPusher(char c) {
+        return c == '[' || c == '(' || c == '{';
+    }
+    
+    private boolean isClosingBracket(char c) {
+        return c == ']' || c == ')' || c == '}';
+    }
+    
+    private boolean matchesTopBracket(Stack<Character> symbols, char c) {
+        char top = symbols.top();
+        return (c == ']' && top == '[') || (c == ')' && top == '(') || (c == '}' && top == '{');
+    }
+    
+    private void handleBracketError(int index, char c, Stack<Character> symbols) {
+        if (symbols.isEmpty()) {
+            System.out.format(NO_OPENING_BRACE, index, c);
+        } else {
+            System.out.format(UNEXPECTED_BRACE, index, c, symbols.top());
+        }
+    }
+    
 
 }
