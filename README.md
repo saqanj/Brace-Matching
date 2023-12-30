@@ -1,4 +1,6 @@
-- Completed as a part of Trinity College's Data Structures & Algorithms Course. Exercise from ZyBooks.
-- check() method and all related private methods were implemented by Saqlain Anjum.
-- This project served as an algorithm design exercise involving stacks.
-- You must provide a java source file whose brackets are mismatched or incorrect for the tests to work.
+- AUTHOR: Saqlain Anjum
+- DESCRIPTION:
+  - Designed as a brace checker in Java Source Code Files. An algorithm is implemented in the CheckBraces class.
+  - Completed as a part of Trinity College's Data Structures and Algorithms course.
+- VERSION: 1.0.0
+- PS: A java source file with mismatched or missing braces must be provided in the main for the tests to function!
