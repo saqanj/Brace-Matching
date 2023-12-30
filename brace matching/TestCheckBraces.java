@@ -1,5 +1,11 @@
 import java.nio.file.Path;
 
+/**
+ * Test class for the CheckBraces method.
+ * 
+ * @author Jonathan Johnson & ZyBooks
+ * @version 1.0.0
+ */
 public class TestCheckBraces {
 
     /**
